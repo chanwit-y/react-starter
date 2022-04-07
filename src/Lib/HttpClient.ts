@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { error$ } from "./Observable/error.obs";
+import { AppInsightInstance } from "./Utils/AppInsightInstance";
 // import { getAccessToken } from "./MsalInstance";
+import { SeverityLevel } from "@microsoft/applicationinsights-web";
 
 const compare = (name?: string, input?: string) => name?.indexOf(input ?? '') !== -1
 
@@ -34,27 +36,22 @@ export class HttpClient {
           name: 'profiles/search',
           method: 'get',
         }]
-        // localStorage.removeItem("ERROR_INFO");
-
         if (!response) return Promise.reject(error)
 
 
-        // AppInsightInstance.getAppInsights?.trackException({
-        //   error: new Error(JSON.stringify({
-        //     error: JSON.stringify(response.data),
-        //     serviceName: response.config?.url ?? '',
-        //     param: JSON.stringify(response.config.data)
-        //   })),
-        //   severityLevel: SeverityLevel.Error
-        // })
+        AppInsightInstance.getAppInsights?.trackException({
+          error: new Error(JSON.stringify({
+            error: JSON.stringify(response.data),
+            serviceName: response.config?.url ?? '',
+            param: JSON.stringify(response.config.data)
+          })),
+          severityLevel: SeverityLevel.Error
+        })
 
         const serviceError = response.status >= 500 && response.status <= 599;
         if (serviceError && !ignores.some(ignore => compare(ignore.name, response.config.url))) {
-          // localStorage.setItem("ERROR_INFO", JSON.stringify(response.data));
-          //TODO: trigger to component
           error$.next(error);
         }
-
         return Promise.reject(error.response)
       }
     );

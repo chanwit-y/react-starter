@@ -4,7 +4,9 @@ import { Test } from "./Test";
 
 function App() {
   useEffect(() => {
-    error$.subscribe((x) => console.log(x));
+    error$.subscribe((x) => {
+      alert()
+    });
   }, []);
 
   return (
