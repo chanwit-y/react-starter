@@ -67,7 +67,7 @@ const ThemeProvider: FC<Props> = ({ children }) => {
         styleOverrides: {
           root: {
             "&.Mui-required > span": {
-              color: Colors.pmRed,
+              color: Colors.danget,
             },
           },
         },

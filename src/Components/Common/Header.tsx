@@ -9,10 +9,10 @@ import {
   IconButton,
 } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { AppMode, useAuth } from "../Context/AuthContext";
+// import { AppMode, useAuth } from "../Context/AuthContext";
 import { drawerWidth } from "../../Lib/Constants";
 import { grey } from "@mui/material/colors";
-import { Roles, Tenants } from "../Share/Dropdown";
+// import { Roles, Tenants } from "../Share/Dropdown";
 import Env from "../../Lib/Utils/Env";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,6 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { IOSSwitch, ArrowPopover } from ".";
 import { Colors } from "../../Lib/Constants/Colors";
 import { useMsal } from "@azure/msal-react";
-import { useLocalStorage } from "../../Lib/Hook/useLocalStorage";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -79,7 +78,7 @@ type Props = {
 };
 
 export const Header: FC<Props> = ({ open, onOpen }) => {
-  const { userProfile, appMode, setAppMode } = useAuth();
+  // const { userProfile, appMode, setAppMode } = useAuth();
   const { instance } = useMsal();
   const navigate = useNavigate();
 
@@ -104,14 +103,6 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
             <Typography alignSelf="center" variant="body2">
               Tenent:
             </Typography>
-            <Tenants />
-
-            {/*
-            <Typography variant="subtitle2" mx={1}>
-              TCM - Melak
-            </Typography>
-            <KeyboardArrowDownIcon />
-            */}
           </Box>
           <Box
             display="flex"
@@ -122,7 +113,7 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
             <Typography variant="subtitle2" mx={1}>
               Back Office
             </Typography>
-            <IOSSwitch
+            {/* <IOSSwitch
               defaultChecked={appMode === AppMode.Admin}
               value={appMode === AppMode.Admin}
               onChange={(e) => {
@@ -133,31 +124,17 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
                 }
                 setAppMode(e.target.checked ? AppMode.Admin : AppMode.User);
               }}
-            />
+            /> */}
             <Divider orientation="vertical" />
             <NotificationsNoneIcon color="disabled" />
             <Typography variant="body2" color={grey[600]} ml={2}>
               Role:
             </Typography>
-            <Roles />
-            {/* <Typography variant="subtitle2" mx={1}>
-              Administrator
-            </Typography> */}
-            {/* <KeyboardArrowDownIcon /> */}
-            <ProfileAvatar
-              src={
-                userProfile?.personId
-                  ? `${Env.IMAGE_ROOT}/profile-pictures/${userProfile?.personId}.jpeg`
-                  : ""
-              }
-            />
+            <ProfileAvatar src={""} />
             <Box display="flex" alignItems="center">
               <Typography variant="subtitle2" ml={1} mr={0.5}>
-                {`${userProfile?.firstNameEn} ${userProfile?.lastNameEN}`}
+                {``}
               </Typography>
-              {/* <IconButton onClick={() => setOpenPopover(true)}>
-              <KeyboardArrowDownIcon />
-            </IconButton> */}
               <ArrowPopover>
                 <Box
                   display="flex"
@@ -188,12 +165,12 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
                   <ProfileAvatar
                     marginLeft={20}
                     size={50}
-                    src={`${Env.IMAGE_ROOT}/profile-pictures/${userProfile?.personId}.jpeg`}
+                    src={`${Env.IMAGE_ROOT}/profile-pictures/dev-52.jpeg`}
                   />
                   <Box mx={1}>
-                    <Typography variant="body1">{`${userProfile?.firstNameEn} ${userProfile?.lastNameEN}`}</Typography>
+                    <Typography variant="body1">{``}</Typography>
                     <Typography fontSize={12} color={grey[800]}>
-                      {userProfile?.jobTitle}
+                      {}
                     </Typography>
                   </Box>
                 </Box>

@@ -8,4 +8,7 @@ export const Colors = {
   banpuNextPurple: "#472F92",
   banpuNextGreen: "#00B490",
   backgroundColor: "#1d2348",
+  darkBlue: "#35395C",
+  menuGroup: "#957EDD",
+  danget: "#FE6A69",
 };

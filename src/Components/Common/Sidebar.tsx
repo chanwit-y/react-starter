@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { drawerWidth, menus, adminMenu } from "../../Lib/Constants";
+import { drawerWidth } from "../../Lib/Constants";
 import { Colors } from "../../Lib/Constants/Colors";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -28,7 +28,6 @@ import {
 } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { FadeIn } from ".";
-import { useAuth, AppMode } from "../Context/AuthContext";
 import { Menu } from "../../@types/MenuType";
 
 const Divider = styled(MuiDivider)({
@@ -103,35 +102,12 @@ type Props = {
 
 export const Sidebar: FC<Props> = ({ open, onOpen }) => {
   const location = useLocation();
-  const { appMode, permission, roles, hasPermission } = useAuth();
-
-  // const [open, setOpen] = useState(false);
-  // useEffect(() => {
-  //   console.log(location);
-  // }, [location]);
-
-  useEffect(() => {
-    // handle menu permission
-    // console.log("permission (user):", permission);
-    // console.log("roles (admin):", roles);
-  }, [permission, roles]);
-
-  const checkNestMenu = (menu: Menu[], isAdmin: boolean): boolean => {
-    let loopCount: number = 0;
-    menu.forEach((m) => {
-      if (hasPermission(m.name, "view", isAdmin)) {
-        loopCount++;
-      }
-    });
-    return loopCount > 0;
-  };
 
   const getMenu = (menu: Menu[], isAdmin: boolean) => {
     return menu
       .filter((m) => m.active)
       .map(
         (item, index) =>
-          hasPermission(item.name, "view", isAdmin) && (
             <BoxListItem
               key={index}
               mb={2}
@@ -159,7 +135,6 @@ export const Sidebar: FC<Props> = ({ open, onOpen }) => {
                 </ListItem>
               </Link>
             </BoxListItem>
-          )
       );
   };
 
@@ -200,39 +175,7 @@ export const Sidebar: FC<Props> = ({ open, onOpen }) => {
           </FadeIn>
         )}
       </DrawerHeader>
-      <List>
-        {appMode === AppMode.User ? (
-          getMenu(menus, false)
-        ) : (
-          <Fragment>
-            {adminMenu.map((g, i) => {
-              return (
-                checkNestMenu(g.menus, true) && (
-                  <Box key={i}>
-                    <FadeIn>
-                      {open ? (
-                        <Typography
-                          mx={3}
-                          my={1}
-                          variant="body1"
-                          color={Colors.menuGroup}
-                          fontWeight={600}
-                        >
-                          {g.groupName}
-                        </Typography>
-                      ) : (
-                        <Divider />
-                      )}
-
-                      {getMenu(g.menus, true)}
-                    </FadeIn>
-                  </Box>
-                )
-              );
-            })}
-          </Fragment>
-        )}
-      </List>
+     
     </Drawer>
   );
 };

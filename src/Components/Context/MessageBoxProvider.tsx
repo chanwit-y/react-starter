@@ -17,7 +17,7 @@ import {
   TextField,
   TransitionsModal,
 } from "../../Components/Common";
-import { Title } from "../Common/Title";
+import { Title } from "../Common";
 
 import MessageBoxReducer, {
   MessageBoxActionType,
