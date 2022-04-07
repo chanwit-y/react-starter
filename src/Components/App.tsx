@@ -1,13 +1,26 @@
 import { useEffect } from "react";
+import { useQueryService } from "../Lib/Hook/useQueryService";
 import { error$ } from "../Lib/Observable/error.obs";
+import userSrv from "./Service/UserProfile.service";
 import { Test } from "./Test";
 
 function App() {
+  // const query  = UserProfileSer("");
+
+  // const {key, callback, options} = userSrv.getByEmail("x");
+  // const query = useQuery(key, callback, options);
+  const x = useQueryService(userSrv.getByEmail("x"));
+
   useEffect(() => {
-    error$.subscribe((x) => {
-      alert()
-    });
+    x.refetch();
   }, []);
+
+  useEffect(() => {
+    // error$.subscribe((x) => {
+    //   alert()
+    // });
+    console.log(x.data);
+  }, [x.data]);
 
   return (
     <div>
