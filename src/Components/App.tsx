@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { foo } from "../Lib/Observable/error.obs";
+import { error$ } from "../Lib/Observable/error.obs";
 import { Test } from "./Test";
 
 function App() {
   useEffect(() => {
-    foo.subscribe((x) => console.log(x));
+    error$.subscribe((x) => console.log(x));
   }, []);
 
   return (
@@ -12,10 +12,10 @@ function App() {
       <Test />
       <button
         onClick={() => {
-          foo.next({
-            code: 100,
-            message: "test"
-          });
+          // error$.next({
+          //   code: 100,
+          //   message: "test"
+          // });
         }}
       >
         Test 1

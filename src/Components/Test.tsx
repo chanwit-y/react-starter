@@ -1,18 +1,29 @@
-import { foo } from '../Lib/Observable/error.obs';
+import { useEffect } from 'react';
+import { HttpClient } from '../Lib/HttpClient';
+import { error$ } from '../Lib/Observable/error.obs';
+
+const httpClient = new HttpClient()
 
 export const Test = () => {
+  useEffect(() => {
+    const func = async () => {
+      const res = await httpClient.get('https://api2-dv.banpu.co.th/ta-plus-api/api/v1/trip/passport-status/30477', {})
+      console.log('res', res)
+    }
+    func()
+  }, [])
   return (
     <div>
       <button
         onClick={() => {
-          foo.next({
-            code: 200,
-            message: "xxxxx"
-          });
+          // error$.next({
+          //   code: 200,
+          //   message: "xxxxx"
+          // });
         }}
       >
         Test 2
       </button>
-</div>
+    </div>
   )
 }
