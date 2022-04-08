@@ -4,6 +4,8 @@
 	  "paths": {
 	    "@dto": ["./src/Lib/DTO/index.ts"],
 	    "context-page": ["./src/Page/index.ts"],
+	    "context-hook/*": ["./src/Lib/Hook/*"],
+	    "context-service/*": ["./src/Lib/Service/*"],
 	    "util/*": ["./src/Lib/Utils/*"],
 	    "interfaces/*": ["./src/shared/interfaces/*"]
 	  }
