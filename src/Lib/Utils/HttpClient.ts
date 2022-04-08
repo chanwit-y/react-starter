@@ -10,6 +10,8 @@ import { error$ } from "../Observable/error.obs";
 import { IResponse } from "../../@types/ServiceType";
 import { IgnoreService } from "../../@types/ErrorType";
 import { getAccessToken } from "./MsalInstance";
+import dayjs from "dayjs";
+import { load$ } from "../Observable/load.obs";
 
 const compare = (name?: string, input?: string) =>
   name?.indexOf(input ?? "") !== -1;
@@ -25,17 +27,21 @@ export class HttpClient {
         "content-Type": "application/json",
         // "app-version": "1.1.0",
         "app-version": "1.0.0",
-        Authorization:
-          "Bearer " + jwtToken, 
+        Authorization: "Bearer " + jwtToken,
         "Access-Control-Allow-Origin": true,
       };
       config.timeout = 30 * 1000;
+      config.data = dayjs().valueOf();
+
+      load$.next(`loading ${config.data}`);
 
       return config;
     });
 
     this._api.interceptors.response.use(
       (response: AxiosResponse) => {
+        // console.log(response.config);
+        load$.next(`loaded ${response.config.data}`);
         return response;
       },
       (error: AxiosError) => {
@@ -47,12 +53,14 @@ export class HttpClient {
           response.data,
           response.config?.url ?? "",
           response.config.data
-        )
+        );
 
         const ignores: IgnoreService[] = [];
         const serviceError = response.status >= 500 && response.status <= 599;
-        const unauthroize = response.status === 401
-        const ignore = ignores.some((ignore) => compare(ignore.name, response.config.url))
+        const unauthroize = response.status === 401;
+        const ignore = ignores.some((ignore) =>
+          compare(ignore.name, response.config.url)
+        );
 
         if (serviceError || unauthroize || ignore) {
           error$.next(error);
@@ -130,8 +138,5 @@ export class HttpClient {
   }
 }
 
-export const unwrap = async <T>(response: AxiosResponse<IResponse<T>>) => {
-  return response.data.status
-    ? response.data.data
-    : response.data.errors;
-};
+export const unwrap = async <T>(response: AxiosResponse<IResponse<T>>) =>
+  response.data.status ? response.data.data : response.data.errors;

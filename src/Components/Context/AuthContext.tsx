@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useState,
 } from "react";
 import { UserProfile } from "@dto";
 import {
@@ -37,20 +38,31 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider: FC = ({ children }) => {
   const { accounts } = useMsal();
-  const {data, refetch} = useQueryService(userService.getByEmail(accounts[0].username || ""));
+  const [userProfile, setUserProfile] = useState<UserProfile>();
+  const { data, refetch } = useQueryService<UserProfile>(
+    userService.getByEmail(accounts[0].username || "")
+  );
 
   useEffect(() => {
-    if(accounts[0].username) refetch();
-  }, [accounts])
+    if (accounts[0].username) refetch();
+  }, [accounts]);
 
   useEffect(() => {
-  console.log(data)
-  }, [data])
+    setUserProfile(data);
+  }, [data]);
 
   return (
     <Fragment>
       <AuthenticatedTemplate>
         <AuthContext.Provider value={{} as AuthContextType}>
+          <button
+          style={{margin: 100}}
+            onClick={() => {
+              refetch();
+            }}
+          >
+            Test
+          </button>
           {children}
         </AuthContext.Provider>
       </AuthenticatedTemplate>
