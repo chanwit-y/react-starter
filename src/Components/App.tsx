@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useQueryService } from "../Lib/Hook/useQueryService";
 import { error$ } from "../Lib/Observable/error.obs";
 import userSrv from "./Service/UserProfile.service";
-import { Test } from "./Test";
 
 function App() {
   // const query  = UserProfileSer("");
@@ -24,7 +23,6 @@ function App() {
 
   return (
     <div>
-      <Test />
       <button
         onClick={() => {
           // error$.next({
