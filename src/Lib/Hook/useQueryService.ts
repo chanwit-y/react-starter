@@ -1,7 +1,7 @@
 import {
   useQuery,
 } from "react-query";
-import { QueryServiceType } from "src/@types/ServiceType";
+import { QueryServiceType } from "../../@types/ServiceType";
 
 export const useQueryService = <T>({
   queryKey,

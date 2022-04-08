@@ -1,4 +1,4 @@
-import { QueryServiceType } from "src/@types/ServiceType";
+import { QueryServiceType } from "../../@types/ServiceType";
 import Env from "../Utils/Env";
 import { HttpClient, unwrap } from "../Utils/HttpClient";
 import { UserProfile } from './../DTO/UserProfile.dto';
@@ -10,10 +10,10 @@ class UserProfileService extends HttpClient {
       queryFn: async (): Promise<UserProfile> => {
         return userId
           ? unwrap<UserProfile>(
-              await this.get(
-                `${Env.API_ENDPOINT}profiles/email?email=chanwit_y@banpu.co.th`
-              )
+            await this.get(
+              `${Env.API_ENDPOINT}profiles/email?email=chanwit_y@banpu.co.th`
             )
+          )
           : {};
       },
       options: {
