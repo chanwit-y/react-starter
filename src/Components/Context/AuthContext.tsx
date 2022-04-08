@@ -18,6 +18,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthPage } from "context-page";
 import { useQueryService } from "context-hook/useQueryService";
 import userService from "context-service/UserProfile.service";
+import { useApplication } from "./ApplicationProvider";
 
 export enum AppMode {
   User,
@@ -37,41 +38,24 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider: FC = ({ children }) => {
-  const { accounts } = useMsal();
+  const { username } = useApplication();
   const [userProfile, setUserProfile] = useState<UserProfile>();
   const { data, refetch } = useQueryService<UserProfile>(
-    userService.getByEmail(accounts[0].username || "")
+    userService.getByEmail(username)
   );
 
   useEffect(() => {
-    if (accounts[0].username) refetch();
-  }, [accounts]);
+    if (username) refetch();
+  }, [username]);
 
   useEffect(() => {
     setUserProfile(data);
   }, [data]);
 
   return (
-    <Fragment>
-      <AuthenticatedTemplate>
         <AuthContext.Provider value={{} as AuthContextType}>
-          <button
-          style={{margin: 100}}
-            onClick={() => {
-              refetch();
-            }}
-          >
-            Test
-          </button>
           {children}
         </AuthContext.Provider>
-      </AuthenticatedTemplate>
-      <UnauthenticatedTemplate>
-        <Routes>
-          <Route path="/" element={<AuthPage />} />
-        </Routes>
-      </UnauthenticatedTemplate>
-    </Fragment>
   );
 };
 

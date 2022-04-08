@@ -1,9 +1,13 @@
 import { MsalProvider } from "@azure/msal-react";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import StylesProvider from "@mui/styles/StylesProvider";
 import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import msalInstance from "util/MsalInstance";
 import App from "./Components/App";
+import ThemeProvider from "./Components/Context/ThemeContext";
+import AdapterDateDayjs from "@mui/lab/AdapterDayjs";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -14,7 +18,13 @@ ReactDOM.render(
   <React.StrictMode>
     <MsalProvider instance={msalInstance}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <StylesProvider injectFirst>
+          <ThemeProvider>
+            <LocalizationProvider dateAdapter={AdapterDateDayjs}>
+              <App />
+            </LocalizationProvider>
+          </ThemeProvider>
+        </StylesProvider>
       </QueryClientProvider>
     </MsalProvider>
   </React.StrictMode>,

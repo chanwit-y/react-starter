@@ -15,7 +15,7 @@ const ThemeProvider: FC<Props> = ({ children }) => {
     palette: {
       primary: {
         // main: blue["A700"],
-        main: Colors.banpuNextGreen,
+        main: Colors.banpuNextPurple,
       },
       secondary: {
         main: red[400],
