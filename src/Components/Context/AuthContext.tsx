@@ -65,7 +65,6 @@ const AuthProvider: FC = ({ children }) => {
     );
   }
 
-
   return (
     <AuthContext.Provider
       value={{
