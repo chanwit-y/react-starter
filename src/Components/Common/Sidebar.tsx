@@ -160,7 +160,7 @@ export const Sidebar: FC<Props> = ({ open, onOpen }) => {
               width="100%"
             >
               <Typography variant="h6" fontWeight={700}>
-                Smart Pole
+                [App Name]
               </Typography>
 
               <IconButton

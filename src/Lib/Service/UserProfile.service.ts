@@ -1,5 +1,5 @@
-import Env from "../../Lib/Utils/Env";
-import { HttpClient, unwrap } from "./../../Lib/Utils/HttpClient";
+import Env from "../Utils/Env";
+import { HttpClient, unwrap } from "../Utils/HttpClient";
 
 class UserProfileService extends HttpClient {
   public getByEmail(userId: string) {

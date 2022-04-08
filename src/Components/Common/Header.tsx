@@ -100,9 +100,9 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
             justifyContent="start"
             alignItems="center"
           >
-            <Typography alignSelf="center" variant="body2">
+            {/* <Typography alignSelf="center" variant="body2">
               Tenent:
-            </Typography>
+            </Typography> */}
           </Box>
           <Box
             display="flex"
@@ -113,18 +113,18 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
             <Typography variant="subtitle2" mx={1}>
               Back Office
             </Typography>
-            {/* <IOSSwitch
-              defaultChecked={appMode === AppMode.Admin}
-              value={appMode === AppMode.Admin}
-              onChange={(e) => {
-                if (appMode === AppMode.User) {
-                  navigate(`/tenant`);
-                } else {
-                  navigate(`/`);
-                }
-                setAppMode(e.target.checked ? AppMode.Admin : AppMode.User);
-              }}
-            /> */}
+            <IOSSwitch
+              // defaultChecked={appMode === AppMode.Admin}
+              // value={appMode === AppMode.Admin}
+              // onChange={(e) => {
+              //   if (appMode === AppMode.User) {
+              //     navigate(`/tenant`);
+              //   } else {
+              //     navigate(`/`);
+              //   }
+              //   setAppMode(e.target.checked ? AppMode.Admin : AppMode.User);
+              // }}
+            />
             <Divider orientation="vertical" />
             <NotificationsNoneIcon color="disabled" />
             <Typography variant="body2" color={grey[600]} ml={2}>
