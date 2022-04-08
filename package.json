@@ -53,6 +53,11 @@
         "typescript": "^4.0.3"
     },
     "scripts": {
+        "start:local": "copy .env.localhost .env && npm start",
+        "start:dev": "copy .env.dev .env && npm start",
+        "start:uat": "copy .env.uat .env && npm start",
+        "start:pre": "copy .env.pre .env && npm start",
+        "start:prod": "copy .env.prod .env && npm start",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
