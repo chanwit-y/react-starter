@@ -1,12 +1,12 @@
+import { MsalProvider } from "@azure/msal-react";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
-import App from "./Components/App";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { MsalProvider } from "@azure/msal-react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import msalInstance from "util/MsalInstance";
+import App from "./Components/App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const queryClient = new QueryClient();
 

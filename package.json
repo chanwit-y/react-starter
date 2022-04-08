@@ -11,7 +11,9 @@
         "@microsoft/applicationinsights-react-js": "^3.2.4",
         "@microsoft/applicationinsights-web": "^2.7.4",
         "@mui/icons-material": "^5.6.0",
+        "@mui/lab": "^5.0.0-alpha.76",
         "@mui/material": "^5.6.0",
+        "@mui/styles": "^5.6.0",
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^11.1.0",
         "@testing-library/user-event": "^12.1.10",
@@ -60,7 +62,7 @@
         "start:uat": "cp .env.uat .env && react-scripts start",
         "start:pre": "cp .env.pre .env && react-scripts start",
         "start:prod": "cp .env.prod .env && react-scripts start",
-        "start": "react-scripts start",
+        "start": "react-app-rewired start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

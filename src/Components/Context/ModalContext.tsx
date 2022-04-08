@@ -49,7 +49,7 @@ type ModalContextType = {
 
 const ModalContext = createContext<ModalContextType>({} as ModalContextType);
 
-const ModalProvoider: FC = ({ children }) => {
+const ModalProvider: FC = ({ children }) => {
   const [titleModal, setTitleModal] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [component, setComponent] = useState<JSX.Element>(<></>);
@@ -64,7 +64,7 @@ const ModalProvoider: FC = ({ children }) => {
       setOpenModal(open);
       setComponent(component);
     },
-    [titleModal, openModal, component]
+    []
   );
 
   return (
@@ -82,6 +82,6 @@ const ModalProvoider: FC = ({ children }) => {
   );
 };
 
-export default ModalProvoider;
+export default ModalProvider;
 
 export const useModal = () => useContext(ModalContext);
