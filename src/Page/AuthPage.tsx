@@ -10,7 +10,7 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-import Env from "../Lib/Utils/Env";
+import Env from "@util/Env";
 import { grey } from "@mui/material/colors";
 
 export const AuthPage = () => {

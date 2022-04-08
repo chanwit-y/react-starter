@@ -3,10 +3,17 @@
 	  "baseUrl": ".",
 	  "paths": {
 	    "@dto": ["./src/Lib/DTO/index.ts"],
-	    "context-page": ["./src/Page/index.ts"],
-	    "context-hook/*": ["./src/Lib/Hook/*"],
-	    "context-service/*": ["./src/Lib/Service/*"],
-	    "util/*": ["./src/Lib/Utils/*"],
+	    "@types": ["./src/@types/index.ts"],
+	    "@page": ["./src/Page/index.ts"],
+	    "@context/*": ["./src/Components/Context/*"],
+	    "@component/*": ["./src/Components/*"],
+	    "@hook/*": ["./src/Lib/Hook/*"],
+	    "@service/*": ["./src/Lib/Service/*"],
+	    "@util/*": ["./src/Lib/Utils/*"],
+	    "@context-hook/*": ["./src/Lib/Hook/*"],
+	    "@context-service/*": ["./src/Lib/Service/*"],
+	    "@context-util/*": ["./src/Lib/Utils/*"],
+	    "@page-util/*": ["./src/Page/../Lib/Utils/*"],
 	    "interfaces/*": ["./src/shared/interfaces/*"]
 	  }
 	}

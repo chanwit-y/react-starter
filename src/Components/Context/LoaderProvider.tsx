@@ -1,7 +1,7 @@
 import { createContext, FC, useContext, useEffect, useState } from "react";
 import { LoaderTypeConstant } from "../../Lib/Constants";
 import { LoaderType } from "../../@types/LoaderType";
-import { loader$ } from "../../Lib/Observable/subject.obs";
+import { loader$ } from "../../Lib/Observable";
 
 type LoaderContextType = {
   isLoading: boolean;

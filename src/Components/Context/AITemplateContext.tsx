@@ -2,9 +2,9 @@ import {
   ReactPlugin,
   withAITracking,
 } from "@microsoft/applicationinsights-react-js";
-import React, { createContext, FC, useEffect } from "react";
+import  { createContext, FC, useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
-import { AppInsightInstance } from "../../Lib/Utils/AppInsightInstance";
+import { AppInsightInstance } from "@util/AppInsightInstance";
 
 type AppInsightType = {
   instrumentationKey: string;

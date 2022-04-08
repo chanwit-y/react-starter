@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 import { UserProfile } from "@dto";
-import { useQueryService } from "context-hook/useQueryService";
-import usrSrv from "context-service/UserProfile.service";
+import { useQueryService } from "@context-hook/useQueryService";
+import usrSrv from "@context-service/UserProfile.service";
 import { useApplication } from "./ApplicationProvider";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";

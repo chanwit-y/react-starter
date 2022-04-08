@@ -3,10 +3,10 @@ import {
   UnauthenticatedTemplate,
   useMsal
 } from "@azure/msal-react";
-import { AuthPage, ErrorPage, UnauthorizePage } from "context-page";
+import { AuthPage, ErrorPage, UnauthorizePage } from "@page";
 import { createContext, FC, useContext, useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { error$ } from "../../Lib/Observable/subject.obs";
+import { error$ } from "../../Lib/Observable/";
 import LoaderProvider from "./LoaderProvider";
 import MessageBoxProvider from "./MessageBoxProvider";
 import ModalProvider from "./ModalContext";

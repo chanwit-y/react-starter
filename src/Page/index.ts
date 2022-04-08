@@ -1,3 +1,3 @@
-export { ErrorPage } from "./ErrorPage";
+export { ErrorPage } from "./Error/ErrorPage";
 export { AuthPage } from "./AuthPage";
-export { UnauthorizePage } from "./UnauthorizePage";
+export { UnauthorizePage } from "./Error/UnauthorizePage";

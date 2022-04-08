@@ -6,13 +6,13 @@ import axios, {
 } from "axios";
 import { AppInsightInstance } from "./AppInsightInstance";
 import { SeverityLevel } from "@microsoft/applicationinsights-web";
-import { error$, loader$ } from "../Observable/subject.obs";
 import { IResponse } from "../../@types/ServiceType";
 import { IgnoreService } from "../../@types/ErrorType";
 import { getAccessToken } from "./MsalInstance";
 import dayjs from "dayjs";
 // import load$ from "../Observable/load.obs";
 import { LoaderTypeConstant } from "../Constants";
+import { error$, loader$ } from "../Observable";
 
 const compare = (name?: string, input?: string) =>
   name?.indexOf(input ?? "") !== -1;
@@ -34,7 +34,7 @@ export class HttpClient {
       config.timeout = 30 * 1000;
       config.data = dayjs().valueOf();
 
-      loader$.set({
+      loader$.next({
         type: LoaderTypeConstant.Loading,
         loaderId: `${config.data}`
       });
@@ -44,7 +44,7 @@ export class HttpClient {
 
     this._api.interceptors.response.use(
       (response: AxiosResponse) => {
-        loader$.set({
+        loader$.next({
           type: LoaderTypeConstant.Loaded,
           loaderId: `${response.config.data}`
         });
@@ -53,7 +53,7 @@ export class HttpClient {
       (error: AxiosError) => {
         const { response } = error;
 
-        loader$.set({
+        loader$.next({
           type: LoaderTypeConstant.Loaded,
           loaderId: `${error?.response?.config.data}`
         });
@@ -73,10 +73,10 @@ export class HttpClient {
           compare(ignore.name, response.config.url)
         );
         if (unauthroize && !ignore) {
-          error$.set({ statusCode: 401 });
+          error$.next({ statusCode: 401 });
         }
         if (serviceError && !ignore) {
-          error$.set({ statusCode: 500 });
+          error$.next({ statusCode: 500 });
         }
         return Promise.reject(error.response);
       }

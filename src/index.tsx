@@ -1,16 +1,16 @@
-import { MsalProvider } from "@azure/msal-react";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import StylesProvider from "@mui/styles/StylesProvider";
 import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import msalInstance from "util/MsalInstance";
-import App from "./Components/App";
-import ThemeProvider from "./Components/Context/ThemeContext";
+import { MsalProvider } from "@azure/msal-react";
+import StylesProvider from "@mui/styles/StylesProvider";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import App from "@component/App";
+import ThemeProvider from "@context/ThemeContext";
+import msalInstance from "@util/MsalInstance";
 import AdapterDateDayjs from "@mui/lab/AdapterDayjs";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import "./index.css";
 
 const queryClient = new QueryClient();
 
