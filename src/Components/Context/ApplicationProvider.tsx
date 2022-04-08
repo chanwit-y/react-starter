@@ -3,9 +3,10 @@ import {
   UnauthenticatedTemplate,
   useMsal
 } from "@azure/msal-react";
-import { AuthPage } from "context-page";
-import { createContext, FC, useContext, useMemo } from "react";
+import { AuthPage, ErrorPage, UnauthorizePage } from "context-page";
+import { createContext, FC, useContext, useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { error$ } from "../../Lib/Observable/error.obs";
 import LoaderProvider from "./LoaderProvider";
 import MessageBoxProvider from "./MessageBoxProvider";
 import ModalProvider from "./ModalContext";
@@ -13,16 +14,35 @@ import ModalProvider from "./ModalContext";
 type ApplicationContextType = {
   username: string;
 };
+
 const ApplicationContext = createContext<ApplicationContextType>(
   {} as ApplicationContextType
 );
 
 const ApplicationProvider: FC = ({ children }) => {
+  const [isUnAuth, setUnAuth] = useState(false)
+  const [isInternalServerError, setInternalServerError] = useState(false)
+
   const { accounts } = useMsal();
   const username = useMemo(
     () => (accounts && accounts.length !== 0 ? accounts[0].username : ""),
     [accounts]
   );
+
+  useEffect(() => {
+    error$.subscribe(({ statusCode }) => {
+      setUnAuth(statusCode === 401)
+      setInternalServerError(statusCode === 500)
+    })
+  }, [])
+
+  if (isUnAuth) {
+    return <UnauthorizePage />
+  }
+
+  if (isInternalServerError) {
+    return <ErrorPage />
+  }
 
   return (
     <ApplicationContext.Provider value={{ username }}>

@@ -1,6 +1,6 @@
 
 export const ErrorPage = () => {
   return (
-    <div>Error 404</div>
+    <div>Error 500</div>
   )
 }

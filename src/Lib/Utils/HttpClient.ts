@@ -67,9 +67,15 @@ export class HttpClient {
         const ignore = ignores.some((ignore) =>
           compare(ignore.name, response.config.url)
         );
-
-        if (serviceError || unauthroize || ignore) {
-          error$.next(error);
+        if (unauthroize && !ignore) {
+          error$.next({
+            statusCode: 401
+          });
+        }
+        if (serviceError && !ignore) {
+          error$.next({
+            statusCode: 500
+          });
         }
         return Promise.reject(error.response);
       }

@@ -1,4 +1,8 @@
 import { AxiosError } from "axios";
 import { Subject } from "rxjs";
 
-export const error$ = new Subject<AxiosError>();
+export type ErrorType = {
+  statusCode: number;
+}
+
+export const error$ = new Subject<ErrorType>();
