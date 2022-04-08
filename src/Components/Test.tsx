@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
-import { HttpClient } from '../Lib/HttpClient';
+// import  httpClient from '../Lib/Utils/HttpClient';
 import { error$ } from '../Lib/Observable/error.obs';
 
-const httpClient = new HttpClient()
+// const httpClient = new HttpClient()
 
 export const Test = () => {
   useEffect(() => {
-    const func = async () => {
-      const res = await httpClient.get('https://api2-dv.banpu.co.th/ta-plus-api/api/v1/trip/passport-status/30477', {})
-      console.log('res', res)
-    }
-    func()
+    // const func = async () => {
+    //   const res = await httpClient.get('https://api2-dv.banpu.co.th/ta-plus-api/api/v1/trip/passport-status/30477', {})
+    //   console.log('res', res)
+    // }
+    // func()
   }, [])
   return (
     <div>

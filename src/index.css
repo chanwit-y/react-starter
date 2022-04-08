@@ -1,13 +1,52 @@
+@font-face {
+  font-family: "NotoSans-Bold";
+  font-style: normal;
+  src: local("NotoSans-Bold"),
+    url(./Assets/Fonts/NotoSans-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSans-Light";
+  font-style: normal;
+  src: local("NotoSans-Light"),
+    url(./Assets/Fonts/NotoSans-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSans-Medium";
+  font-style: normal;
+  src: local("NotoSans-Medium"),
+    url(./Assets/Fonts/NotoSans-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSans-Regular";
+  font-style: normal;
+  src: local("NotoSans-Regular"),
+    url(./Assets/Fonts/NotoSans-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSans-Thin";
+  font-style: normal;
+  src: local("NotoSans-Thin"),
+    url(./Assets/Fonts/NotoSans-Thin.ttf) format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.MuiDataGrid-row {
+  cursor: pointer;
 }
