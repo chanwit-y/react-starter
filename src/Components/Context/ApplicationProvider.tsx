@@ -6,7 +6,7 @@ import {
 import { AuthPage, ErrorPage, UnauthorizePage } from "context-page";
 import { createContext, FC, useContext, useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { error$ } from "../../Lib/Observable/error.obs";
+import { error$ } from "../../Lib/Observable/subject.obs";
 import LoaderProvider from "./LoaderProvider";
 import MessageBoxProvider from "./MessageBoxProvider";
 import ModalProvider from "./ModalContext";
@@ -34,6 +34,10 @@ const ApplicationProvider: FC = ({ children }) => {
       setUnAuth(statusCode === 401)
       setInternalServerError(statusCode === 500)
     })
+
+    return () => {
+      error$.unsubscribe()
+    }
   }, [])
 
   if (isUnAuth) {

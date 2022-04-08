@@ -1,7 +1,7 @@
 import { createContext, FC, useContext, useEffect, useState } from "react";
 import { LoaderTypeConstant } from "../../Lib/Constants";
 import { LoaderType } from "../../@types/LoaderType";
-import { load$ } from "../../Lib/Observable/load.obs";
+import { loader$ } from "../../Lib/Observable/subject.obs";
 
 type LoaderContextType = {
   isLoading: boolean;
@@ -13,7 +13,7 @@ const LoaderProvider: FC = ({ children }) => {
   const [loaderIds, setLoaderIds] = useState<string[]>([])
 
   useEffect(() => {
-    load$.subscribe(({ loaderId, type }: LoaderType) => {
+    loader$.subscribe(({ loaderId, type }: LoaderType) => {
       setLoaderIds(state => {
         if (type === LoaderTypeConstant.Loaded) {
           return state.filter(id => id !== loaderId)
@@ -24,6 +24,10 @@ const LoaderProvider: FC = ({ children }) => {
         return state.concat(loaderId)
       })
     })
+
+    return () => {
+      loader$.unsubscribe()
+    }
   }, [])
 
   return (
