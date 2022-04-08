@@ -8,6 +8,7 @@ import { AppInsightInstance } from "./AppInsightInstance";
 import { SeverityLevel } from "@microsoft/applicationinsights-web";
 import { error$ } from "../Observable/error.obs";
 import { IResponse } from "../../@types/ServiceType";
+import { IgnoreService } from "../../@types/ErrorType";
 
 const compare = (name?: string, input?: string) =>
   name?.indexOf(input ?? "") !== -1;
@@ -39,35 +40,39 @@ export class HttpClient {
       },
       (error: AxiosError) => {
         const { response } = error;
-        const ignores = [
-          {
-            name: "profiles/search",
-            method: "get",
-          },
-        ];
+
         if (!response) return Promise.reject(error);
 
-        AppInsightInstance.getAppInsights?.trackException({
-          error: new Error(
-            JSON.stringify({
-              error: JSON.stringify(response.data),
-              serviceName: response.config?.url ?? "",
-              param: JSON.stringify(response.config.data),
-            })
-          ),
-          severityLevel: SeverityLevel.Error,
-        });
+        this.runAppInsigth(
+          response.data,
+          response.config?.url ?? "",
+          response.config.data
+        )
 
+        const ignores: IgnoreService[] = [];
         const serviceError = response.status >= 500 && response.status <= 599;
-        if (
-          serviceError &&
-          !ignores.some((ignore) => compare(ignore.name, response.config.url))
-        ) {
+        const unauthroize = response.status === 401
+        const ignore = ignores.some((ignore) => compare(ignore.name, response.config.url))
+
+        if (serviceError || unauthroize || ignore) {
           error$.next(error);
         }
         return Promise.reject(error.response);
       }
     );
+  }
+
+  private runAppInsigth(error: any, serviceName: string, param: any) {
+    AppInsightInstance.getAppInsights?.trackException({
+      error: new Error(
+        JSON.stringify({
+          error: JSON.stringify(error),
+          serviceName,
+          param: JSON.stringify(param),
+        })
+      ),
+      severityLevel: SeverityLevel.Error,
+    });
   }
 
   protected get<T, R = AxiosResponse<T>>(
