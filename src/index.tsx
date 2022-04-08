@@ -5,14 +5,18 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import App from "./Components/App";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { MsalProvider } from "@azure/msal-react";
+import msalInstance from "util/MsalInstance";
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+    <MsalProvider instance={msalInstance}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </MsalProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

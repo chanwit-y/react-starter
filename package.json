@@ -51,10 +51,11 @@
         "@types/node": "^12.0.0",
         "@types/react": "^16.9.53",
         "@types/react-dom": "^16.9.8",
+        "react-app-rewired": "^2.2.1",
         "typescript": "^4.0.3"
     },
     "scripts": {
-        "start:local": "cp .env.local .env && react-scripts start",
+        "start:local": "cp .env.local .env && react-app-rewired start",
         "start:dev": "cp .env.dev .env && react-scripts start",
         "start:uat": "cp .env.uat .env && react-scripts start",
         "start:pre": "cp .env.pre .env && react-scripts start",

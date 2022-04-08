@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+	  "baseUrl": ".",
+	  "paths": {
+	    "@dto": ["./src/Lib/DTO/index.ts"],
+	    "context-page": ["./src/Page/index.ts"],
+	    "util/*": ["./src/Lib/Utils/*"],
+	    "interfaces/*": ["./src/shared/interfaces/*"]
+	  }
+	}
+      }
