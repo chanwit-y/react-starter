@@ -1,6 +1,7 @@
 import { FC, Fragment, useState, useEffect } from "react";
-import { Box, styled } from "@mui/material";
+import { Backdrop, Box, CircularProgress, styled } from "@mui/material";
 import { Header, Sidebar } from "../Common";
+import { useLoader } from "../Context/LoaderProvider";
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -27,18 +28,16 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 
 const Layout: FC = ({ children }) => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
+  const loader = useLoader()
 
   return (
     <Fragment>
-      {/* <Backdrop className={classes.backdrop} open={loader?.loading ?? false}>
-        <CircularProgress color="primary" thickness={6} />
-      </Backdrop> */}
-      {/* <Backdrop
+      <Backdrop
         sx={{ color: '#2962ff', zIndex: (theme) => theme.zIndex.drawer + 100 }}
-        open={loader?.loading || false}
+        open={loader.isLoading}
       >
         <CircularProgress color="inherit" />
-      </Backdrop> */}
+      </Backdrop>
       <Box display="flex" minHeight="100vh">
         <Header open={isOpenSideBar} onOpen={setIsOpenSideBar} />
         <Sidebar open={isOpenSideBar} onOpen={setIsOpenSideBar} />

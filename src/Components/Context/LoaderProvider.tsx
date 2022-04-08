@@ -1,44 +1,37 @@
-import { createContext, FC, useContext, useReducer } from "react";
-import LoaderReducer, { initialState, LoaderActionType } from "./Reducer/LoaderReducer.reducer";
+import { createContext, FC, useContext, useEffect, useState } from "react";
+import { LoaderTypeConstant } from "../../Lib/Constants";
+import { LoaderType } from "../../@types/LoaderType";
+import { load$ } from "../../Lib/Observable/load.obs";
 
 type LoaderContextType = {
-  setLoading: Function;
+  isLoading: boolean;
 };
 
 const LoaderContext = createContext<LoaderContextType>({} as LoaderContextType);
 
 const LoaderProvider: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(LoaderReducer, initialState);
+  const [loaderIds, setLoaderIds] = useState<string[]>([])
 
-  const setLoading = (isLoading: boolean, processName: string) => {
-    let actionList = [...state.actionStack];
-    if (isLoading) {
-      actionList = [...actionList, processName];
-    } else {
-      const index = actionList.findIndex(
-        (actionName) => actionName === processName
-      );
-      actionList.splice(index, 1);
-      isLoading = actionList.length !== 0;
-    }
-    dispatch({
-      type: LoaderActionType.SET,
-      payload: {
-        loading: isLoading,
-        actionStack: actionList,
-      }
+  useEffect(() => {
+    load$.subscribe(({ loaderId, type }: LoaderType) => {
+      setLoaderIds(state => {
+        if (type === LoaderTypeConstant.Loaded) {
+          return state.filter(id => id !== loaderId)
+        }
+        if (state.some(id => id === loaderId)) {
+          return state
+        }
+        return state.concat(loaderId)
+      })
     })
-  };
-
-  const setLoadingAction = async (action?: Function) => {
-    const actionId = String(Date.now())
-    setLoading(true, actionId);
-    action && await action();
-    setLoading(false, actionId);
-  }
+  }, [])
 
   return (
-    <LoaderContext.Provider value={{ setLoading }}>
+    <LoaderContext.Provider
+      value={{
+        isLoading: !!loaderIds.length
+      }}
+    >
       {children}
     </LoaderContext.Provider>
   );

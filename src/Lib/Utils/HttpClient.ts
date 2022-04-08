@@ -12,6 +12,7 @@ import { IgnoreService } from "../../@types/ErrorType";
 import { getAccessToken } from "./MsalInstance";
 import dayjs from "dayjs";
 import { load$ } from "../Observable/load.obs";
+import { LoaderTypeConstant } from "../Constants";
 
 const compare = (name?: string, input?: string) =>
   name?.indexOf(input ?? "") !== -1;
@@ -33,15 +34,20 @@ export class HttpClient {
       config.timeout = 30 * 1000;
       config.data = dayjs().valueOf();
 
-      load$.next(`loading ${config.data}`);
+      load$.next({
+        type: LoaderTypeConstant.Loading,
+        loaderId: `${config.data}`
+      });
 
       return config;
     });
 
     this._api.interceptors.response.use(
       (response: AxiosResponse) => {
-        // console.log(response.config);
-        load$.next(`loaded ${response.config.data}`);
+        load$.next({
+          type: LoaderTypeConstant.Loaded,
+          loaderId: `${response.config.data}`
+        });
         return response;
       },
       (error: AxiosError) => {

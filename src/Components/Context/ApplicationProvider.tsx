@@ -1,7 +1,7 @@
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
-  useMsal,
+  useMsal
 } from "@azure/msal-react";
 import { AuthPage } from "context-page";
 import { createContext, FC, useContext, useMemo } from "react";
@@ -23,6 +23,7 @@ const ApplicationProvider: FC = ({ children }) => {
     () => (accounts && accounts.length !== 0 ? accounts[0].username : ""),
     [accounts]
   );
+
   return (
     <ApplicationContext.Provider value={{ username }}>
       <LoaderProvider>
