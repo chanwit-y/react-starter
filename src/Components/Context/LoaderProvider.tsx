@@ -10,17 +10,15 @@ type LoaderContextType = {
 const LoaderContext = createContext<LoaderContextType>({} as LoaderContextType);
 
 const LoaderProvider: FC = ({ children }) => {
-  const [loaderIds, setLoaderIds] = useState<string[]>([])
+  const [loaderIds, setLoaderIds] = useState<string[]>([]);
 
   useEffect(() => {
     loader$.subscribe(({ loaderId, type }: LoaderType) => {
       setLoaderIds(state => {
-        if (type === LoaderTypeConstant.Loaded) {
+        if (type === LoaderTypeConstant.Loaded)
           return state.filter(id => id !== loaderId)
-        }
-        if (state.some(id => id === loaderId)) {
+        if (state.some(id => id === loaderId))
           return state
-        }
         return state.concat(loaderId)
       })
     })
@@ -33,7 +31,7 @@ const LoaderProvider: FC = ({ children }) => {
   return (
     <LoaderContext.Provider
       value={{
-        isLoading: !!loaderIds.length
+        isLoading: !!loaderIds.length,
       }}
     >
       {children}
