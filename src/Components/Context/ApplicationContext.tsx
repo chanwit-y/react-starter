@@ -6,10 +6,8 @@ import {
 import { AuthPage, ErrorPage, UnauthorizePage } from "@page";
 import { createContext, FC, useContext, useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { error$ } from "../../Lib/Observable/";
-import LoaderProvider from "./LoaderProvider";
-import MessageBoxProvider from "./MessageBoxProvider";
-import ModalProvider from "./ModalContext";
+import { error$ } from "@context-observable";
+import { LoaderProvider, MessageBoxProvider, ModalProvider } from ".";
 
 type ApplicationContextType = {
   username: string;

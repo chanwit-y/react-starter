@@ -10,9 +10,13 @@
 	    "@hook/*": ["./src/Lib/Hook/*"],
 	    "@service/*": ["./src/Lib/Service/*"],
 	    "@util/*": ["./src/Lib/Utils/*"],
+	    "@context-types": ["./src/Components/Context/../../@types/"],
 	    "@context-hook/*": ["./src/Lib/Hook/*"],
 	    "@context-service/*": ["./src/Lib/Service/*"],
 	    "@context-util/*": ["./src/Lib/Utils/*"],
+	    "@context-common": ["./src/Components/Common/index.ts"],
+	    "@context-observable": ["./src/Lib/Observable/index.ts"],
+	    "@context-constant": ["./src/Lib/Constants/index.ts"],
 	    "@page-util/*": ["./src/Page/../Lib/Utils/*"],
 	    "interfaces/*": ["./src/shared/interfaces/*"]
 	  }

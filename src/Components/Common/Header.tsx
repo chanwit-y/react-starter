@@ -9,10 +9,8 @@ import {
   IconButton,
 } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-// import { AppMode, useAuth } from "../Context/AuthContext";
 import { drawerWidth } from "../../Lib/Constants";
 import { grey } from "@mui/material/colors";
-// import { Roles, Tenants } from "../Share/Dropdown";
 import Env from "../../Lib/Utils/Env";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";

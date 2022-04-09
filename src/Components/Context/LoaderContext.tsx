@@ -1,6 +1,6 @@
 import { createContext, FC, useContext, useEffect, useState } from "react";
-import { LoaderTypeConstant } from "../../Lib/Constants";
-import { LoaderType } from "../../@types/LoaderType";
+import { LoaderTypeConstant } from "@context-constant";
+import { LoaderType } from "@types";
 import { loader$ } from "../../Lib/Observable";
 
 type LoaderContextType = {

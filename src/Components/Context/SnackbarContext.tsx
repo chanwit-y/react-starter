@@ -1,16 +1,15 @@
-import { Alert, Snackbar, SnackbarCloseReason } from "@mui/material";
-import { AlertType } from "../../@types/SnackbarType";
 import {
   createContext,
   Dispatch,
   FC,
   memo,
   SetStateAction,
-  SyntheticEvent,
   useCallback,
   useContext,
   useState,
 } from "react";
+import { Alert, Snackbar } from "@mui/material";
+import { AlertType } from "@context-types";
 
 type Props = {
   open: boolean;

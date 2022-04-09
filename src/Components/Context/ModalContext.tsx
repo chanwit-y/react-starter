@@ -1,4 +1,4 @@
-import React, {
+import  {
   createContext,
   Dispatch,
   FC,
@@ -8,7 +8,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { TransitionsModal } from "../Common";
+import { TransitionsModal } from "@context-common";
 
 type DisplayModalProps = {
   title: string;

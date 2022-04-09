@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import { isEmpty } from "lodash";
-import React, {
+import  {
   createContext,
   FC,
   Fragment,
@@ -10,13 +10,13 @@ import React, {
   useReducer,
   useState,
 } from "react";
-import { MessageBoxType } from "../../@types/MessageBoxType";
+import { MessageBoxType } from "@context-types";
 import {
   PrimaryButton,
   RemoveButton,
   TextField,
   TransitionsModal,
-} from "../../Components/Common";
+} from "../Common";
 import { Title } from "../Common";
 
 import MessageBoxReducer, {

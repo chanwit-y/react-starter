@@ -7,5 +7,7 @@ export const Logo = BanpuLogo;
 
 export enum LoaderTypeConstant {
   Loading,
-  Loaded
+  Loaded,
 }
+
+export { Colors } from "./Colors";

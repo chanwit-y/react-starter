@@ -1,10 +1,10 @@
-import React, { FC, createContext } from "react";
+import  { FC, createContext } from "react";
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
 } from "@mui/material/styles";
-import { blue, green, red } from "@mui/material/colors";
-import { Colors } from "../../Lib/Constants/Colors";
+import {  red } from "@mui/material/colors";
+import { Colors } from "@context-constant";
 
 type ContextType = {};
 const ThemeContext = createContext<ContextType>({});
