@@ -1,4 +1,4 @@
-import { FC, Fragment, useState, useEffect } from "react";
+import { FC, Fragment, useState } from "react";
 import { Backdrop, Box, CircularProgress, styled } from "@mui/material";
 import { Header, Sidebar } from "../Common";
 import { useLoader } from "../Context/LoaderContext";

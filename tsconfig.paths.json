@@ -6,6 +6,7 @@
 	    "@types": ["./src/@types/index.ts"],
 	    "@page": ["./src/Page/index.ts"],
 	    "@context/*": ["./src/Components/Context/*"],
+	    "@context": ["./src/Components/Context/index.ts"],
 	    "@component/*": ["./src/Components/*"],
 	    "@hook/*": ["./src/Lib/Hook/*"],
 	    "@service/*": ["./src/Lib/Service/*"],
@@ -17,8 +18,9 @@
 	    "@context-common": ["./src/Components/Common/index.ts"],
 	    "@context-observable": ["./src/Lib/Observable/index.ts"],
 	    "@context-constant": ["./src/Lib/Constants/index.ts"],
+	    "@component-util/*": ["./src/Components/../Lib/Utils/*"],
+	    "@reducer-types": ["./src/Components/Context/Reducer/../../../@types/"],
 	    "@page-util/*": ["./src/Page/../Lib/Utils/*"],
-	    "interfaces/*": ["./src/shared/interfaces/*"]
 	  }
 	}
       }

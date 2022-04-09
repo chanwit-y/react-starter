@@ -1,7 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
-import Env from "../Lib/Utils/Env";
-import ApplicationProvider from "./Context/ApplicationContext";
-import AuthProvider from "./Context/AuthContext";
+import Env from "@component-util/Env";
+import { ApplicationProvider, AuthProvider } from "@context";
 import Layout from "./Layout";
 import { Router } from "./Router";
 

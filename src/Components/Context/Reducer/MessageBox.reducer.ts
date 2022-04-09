@@ -1,4 +1,4 @@
-import { IAction } from "../../../@types/ActionType";
+import { IAction } from "@reducer-types";
 
 export type MessageBoxState = {
   test: string;

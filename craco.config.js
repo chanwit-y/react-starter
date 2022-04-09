@@ -38,6 +38,8 @@ module.exports = {
       '@context-common': path.resolve(__dirname, 'src/Components/Context/../Common'),
       '@context-observable': path.resolve(__dirname, 'src/Components/Context/../../Lib/Observable'),
       '@context-constant': path.resolve(__dirname, 'src/Components/Context/../../Lib/Constants'),
+      '@component-util': path.resolve(__dirname, 'src/Components/../Lib/Utils'),
+      '@reducer-types': path.resolve(__dirname, 'src/Components/Context/Reducer/../../../@types'),
       '@page-util': path.resolve(__dirname, 'src/Page/../Lib/Utils'),
     },
   },
