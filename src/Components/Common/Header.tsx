@@ -20,6 +20,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { IOSSwitch, ArrowPopover } from ".";
 import { Colors } from "../../Lib/Constants/Colors";
 import { useMsal } from "@azure/msal-react";
+import { AppMode, useAuth } from "@context/AuthContext";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -76,7 +77,7 @@ type Props = {
 };
 
 export const Header: FC<Props> = ({ open, onOpen }) => {
-  // const { userProfile, appMode, setAppMode } = useAuth();
+  const { userProfile, appMode, setAppMode } = useAuth();
   const { instance } = useMsal();
   const navigate = useNavigate();
 
@@ -112,26 +113,32 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
               Back Office
             </Typography>
             <IOSSwitch
-              // defaultChecked={appMode === AppMode.Admin}
-              // value={appMode === AppMode.Admin}
-              // onChange={(e) => {
-              //   if (appMode === AppMode.User) {
-              //     navigate(`/tenant`);
-              //   } else {
-              //     navigate(`/`);
-              //   }
-              //   setAppMode(e.target.checked ? AppMode.Admin : AppMode.User);
-              // }}
+              defaultChecked={appMode === AppMode.Admin}
+              value={appMode === AppMode.Admin}
+              onChange={(e) => {
+                // if (appMode === AppMode.User) {
+                //   navigate(`/tenant`);
+                // } else {
+                //   navigate(`/`);
+                // }
+                setAppMode(e.target.checked ? AppMode.Admin : AppMode.User);
+              }}
             />
             <Divider orientation="vertical" />
             <NotificationsNoneIcon color="disabled" />
             <Typography variant="body2" color={grey[600]} ml={2}>
               Role:
             </Typography>
-            <ProfileAvatar src={""} />
+            <ProfileAvatar
+              src={
+                userProfile?.personId
+                  ? `${Env.IMAGE_ROOT}/profile-pictures/${userProfile?.personId}.jpeg`
+                  : ""
+              }
+            />
             <Box display="flex" alignItems="center">
               <Typography variant="subtitle2" ml={1} mr={0.5}>
-                {``}
+                {`${userProfile?.firstNameEn} ${userProfile?.lastNameEN}`}
               </Typography>
               <ArrowPopover>
                 <Box
@@ -163,12 +170,12 @@ export const Header: FC<Props> = ({ open, onOpen }) => {
                   <ProfileAvatar
                     marginLeft={20}
                     size={50}
-                    src={`${Env.IMAGE_ROOT}/profile-pictures/dev-52.jpeg`}
+                    src={`${Env.IMAGE_ROOT}/profile-pictures/${userProfile?.userId}.jpeg`}
                   />
                   <Box mx={1}>
-                    <Typography variant="body1">{``}</Typography>
+                    <Typography variant="body1">{`${userProfile?.firstNameEn} ${userProfile?.lastNameEN}`}</Typography>
                     <Typography fontSize={12} color={grey[800]}>
-                      {}
+                      {userProfile?.jobTitle}
                     </Typography>
                   </Box>
                 </Box>
